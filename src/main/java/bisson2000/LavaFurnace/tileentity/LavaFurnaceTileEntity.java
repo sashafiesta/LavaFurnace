@@ -41,12 +41,14 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import net.minecraft.state.properties.BlockStateProperties;
+
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
 public class LavaFurnaceTileEntity extends TileEntity implements IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity, INamedContainerProvider, INameable {
-
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
     protected FluidTank tank = new FluidTank(Config.LAVA_FURNACE_TANK_CAPACITY.get());
     private ITextComponent customName;
     private int burnTime;
@@ -170,7 +172,7 @@ public class LavaFurnaceTileEntity extends TileEntity implements IRecipeHolder, 
 
         boolean flag = this.isBurning();
         boolean flag1 = false;
-
+        LIT = flag;
         if (this.isBurning()) {
             int amount = tank.getFluidAmount();
 
